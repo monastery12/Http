@@ -7,7 +7,7 @@ var Infos = {
     _infoTable:null,
 
     init(sequelize){
-        this._infoTable = sequelize.define("infos", {
+        this._infoTable = sequelize.define("DSInfos", {
 
             userName: Sequelize.STRING,
             userAccount: Sequelize.STRING,

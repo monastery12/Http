@@ -9,15 +9,15 @@ var ShopCars = {
 
     init(sequelize){
 
-        this._shopCarsTable = sequelize.define("shopCars", {
+        this._shopCarsTable = sequelize.define("DSCars", {
 
-            shopGoodsName: Sequelize.STRING,
-            shopGoodsCode: Sequelize.STRING,
-            shopGoodsNum: Sequelize.FLOAT,
-            shopUserName: Sequelize.STRING,
-            shopUserAccount: Sequelize.STRING,
-            shopGoodsUrl: Sequelize.STRING,
-            shopGoodsPrice: Sequelize.STRING,
+            carGoodsName:Sequelize.STRING,
+            carGoodsId:Sequelize.INTEGER,
+            carUserName:Sequelize.STRING,
+            carUserAccount:Sequelize.STRING,
+            carGoodsUrl:Sequelize.STRING,
+            carGoodsNum:Sequelize.FLOAT,
+            carGoodsPrice:Sequelize.FLOAT,
         });
     },
 

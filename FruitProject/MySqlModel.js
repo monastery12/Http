@@ -11,6 +11,7 @@ const Goods = require("./table/Goods");
 const Infos = require("./table/Infos");
 const Orders = require("./table/Orders");
 const ShopCars = require("./table/ShopCars");
+const Notices = require("./table/Notices");
 
 const MySqlModel = {
 
@@ -43,6 +44,7 @@ const MySqlModel = {
                 Infos.init(self._sequelize);
                 Orders.init(self._sequelize);
                 ShopCars.init(self._sequelize);
+                Notices.init(self._sequelize);
             })
             .catch(err => {
                 console.error('无法连接数据库 err :', err)

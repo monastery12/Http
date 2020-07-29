@@ -6,7 +6,7 @@ var http = require('http');
 var querystring = require("querystring");
 var ResponseManager = require("./ResponseManager");
 
-const PORT = 8081;
+const PORT = 8082;
 
 let HttpManager = {
 
@@ -38,8 +38,6 @@ let HttpManager = {
         let res = querystring.parse(url.split('?')[1]);       //获取请求
 
         ResponseManager.checkType(res,response);             //负责响应请求问题并返回数据 msg:
-
-        //response.end(); // 将HTTP响应的HTML内容写入response:
     },
 };
 module.exports = HttpManager;

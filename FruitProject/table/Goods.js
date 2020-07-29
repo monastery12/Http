@@ -9,13 +9,17 @@ var Goods = {
 
     init(sequelize){
 
-        this._goodsTable = sequelize.define("goods", {
-            goodsName: Sequelize.STRING,                    //映射表
-            goodsDes: Sequelize.STRING,
-            goodsPic:Sequelize.STRING,
-            goodsPrice: Sequelize.FLOAT,
-            goodsType:Sequelize.STRING,
-            goodsNum:Sequelize.FLOAT,
+        this._goodsTable = sequelize.define("DSGoods", {
+            goodsName: Sequelize.STRING,                    //名字
+            goodsPrice: Sequelize.FLOAT,                    //价格
+            goodsDiscount:Sequelize.FLOAT,                  //打折价
+            goodsIsSell:Sequelize.INTEGER,                  //是否上架
+            goodsDes: Sequelize.STRING,                     //描述
+            goodsSelect:Sequelize.STRING,                   //选择
+            goodsNum:Sequelize.FLOAT,                       //数量0
+            goodsType:Sequelize.STRING,                     //类型
+            goodsUrl:Sequelize.STRING,                      //图片url
+            goodsRecommend:Sequelize.INTEGER,               //商品推荐
         });
     },
 
@@ -78,6 +82,37 @@ var Goods = {
             })();
         }
     },
+
+    //通过code查询goods
+    findDataByCode(code,response){
+
+        let table = this._goodsTable;
+        let tableInfoInfoArr = [];
+        let limitObj = {};
+
+        limitObj["id"] = code;
+        (async () => {
+            let tableInfo = await table.findAll({
+                where: limitObj,
+            });
+
+
+            for(let i = 0 ; i < tableInfo.length ; i++){
+                tableInfoInfoArr.push(tableInfo[i].dataValues);
+                console.log("配置表数据 ",tableInfo[i].dataValues);
+            }
+            let goodsData = {};
+            if(tableInfoInfoArr.length > 0){
+                goodsData.status = 1;
+            }else {
+                goodsData.status = 0;
+            }
+            goodsData.data = tableInfoInfoArr;
+
+            response.end(JSON.stringify(goodsData));
+
+        })();
+    }
 
 }
 

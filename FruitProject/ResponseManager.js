@@ -4,6 +4,7 @@ const Goods     = require("./table/Goods");
 const Infos     = require("./table/Infos");
 const Order     = require("./table/Orders");
 const ShopCars  = require("./table/ShopCars");
+const Notices   = require("./table/Notices");
 
 //微信sdk
 const WXSDK     = require("./WXSDK");
@@ -19,6 +20,8 @@ const ResponseManager = {
     _carInfo:"carInfo",
     _addCar:"addCar",
     _wxLogin:"wxLogin",
+    _goodsInfoDetail:"goodsInfoDetail",
+    _notice:"notices",
     
     checkType(res,response){
 
@@ -99,14 +102,25 @@ const ResponseManager = {
             ShopCars.changeData(shopGoodsName,shopGoodsCode,shopGoodsNum,shopUserName,shopUserAccount,shopGoodsUrl,shopGoodsPrice,response);
         }
 
+        //公告
+        else if(type == this._notice ){
+            Notices.findData(response);
+        }
+
         //微信登陆
         else if(type == this._wxLogin){
             let code = res.code;
             WXSDK.login(code,response);
         }
 
+        //根据code查询商品
+        else if(type == this._goodsInfoDetail){
+            let goodsCode = res.goodsCode;
+            Goods.findDataByCode(goodsCode,response);
+        }
+
         else {
-            response.end("0");
+            response.end({state:0});
         }
 
     },

@@ -8,17 +8,19 @@ let Orders = {
     _ordersTable:null,
 
     init(sequelize){
-        this._ordersTable = sequelize.define("orders", {
+        this._ordersTable = sequelize.define("DSOrders", {
 
-            orderName:Sequelize.STRING,
-            orderTime:Sequelize.STRING,
-            orderDes:Sequelize.STRING,
+            orderUserAccount:Sequelize.STRING,
             orderPhone:Sequelize.STRING,
-            orderGoods:Sequelize.STRING,
-            orderNum:Sequelize.FLOAT,
+            orderGoodsName:Sequelize.STRING,
+            orderGoodsId:Sequelize.INTEGER,
+            orderGoodsNum:Sequelize.FLOAT,
+            orderPost:Sequelize.STRING,
             orderComplete:Sequelize.INTEGER,
-            orderAddress:Sequelize.STRING,
-            orderCode:Sequelize.STRING,
+            orderUserName:Sequelize.STRING,
+            orderDes:Sequelize.STRING,
+            orderTime:Sequelize.STRING,
+            orderGoodsUrl:Sequelize.STRING,
         });
     },
 
